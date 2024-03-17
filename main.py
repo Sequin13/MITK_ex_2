@@ -1,4 +1,3 @@
-import hashlib
 import time
 import timeit
 import plotly.graph_objects as go
@@ -70,14 +69,12 @@ def file_hash_comparison(hash_result: str,
         bool: True if the hash_result matches the known_hash, False otherwise.
     """
 
-
     if hash_result == known_hash:
         return True
     else:
         return False
 
-
-def measure_hash_time(message_sizes: list, algorithm: str ='sha256'):
+def measure_hash_time(message_sizes: list, algorithm: str = 'sha256'):
     """
     Measure the time taken to hash messages of different sizes using a specified algorithm.
 
@@ -94,7 +91,6 @@ def measure_hash_time(message_sizes: list, algorithm: str ='sha256'):
         time_taken = timeit.timeit(lambda: hash_with_algorithm(algorithm, data=message), number=1)
         time_results[size] = time_taken
     return time_results
-
 
 def main():
     """
@@ -146,7 +142,7 @@ def main():
     fig = go.Figure(data=go.Bar(x=list(hash_time_results.keys()), y=list(hash_time_results.values())))
     fig.update_layout(title='Elapsed time for hashing messages of different sizes',
                       xaxis_title='Message Size (characters)',
-                      yaxis_title='Time (seconds)')
+                      yaxis_title='Time (microseconds)')
     fig.show()
 
 
